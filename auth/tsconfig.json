@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "es2019",
+        "module": "commonjs",
+        "rootDir": "./",
+        "baseUrl": "./src",
+        "outDir": "./dist",
+        "removeComments": true,
+        "noEmitOnError": true,
+        "strict": true,
+        "strictPropertyInitialization": false,
+        "paths": {
+            "@database": ["database"],
+            "@modules/*": ["modules/*"],
+            "@configs/*": ["configs/*"],
+            "@shared/*": ["shared/*"]
+        },
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true
+    },
+    "include": ["./src"],
+    "exclude": ["node_modules", "dist"]
+}

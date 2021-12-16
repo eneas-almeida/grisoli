@@ -1,0 +1,75 @@
+version: '3'
+services:
+    auth-db-postgres:
+        image: postgres:11
+        container_name: auth-db-postgres
+        restart: always
+        networks:
+            - sales-network
+        environment:
+            - POSTGRES_DB=auth
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=123456
+        ports:
+            - 5432:5432
+
+    sales-db-mongo:
+        image: tutum/mongodb
+        container_name: sales-db-mongo
+        restart: always
+        networks:
+            - sales-network
+        environment:
+            - MONGODB_USER=admin
+            - MONGODB_DATABASE=sales
+            - MONGODB_PASS=123456
+        ports:
+            - 27017:27017
+            - 28017:28017
+    product-db-postgres:
+        image: postgres:11
+        container_name: product-db-postgres
+        restart: always
+        networks:
+            - sales-network
+        environment:
+            - POSTGRES_DB=product
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=123456
+        ports:
+            - 5433:5432
+
+    sales-rabbit:
+        image: rabbitmq:3-management
+        container_name: sales-rabbit
+        hostname: sales-rabbit
+        networks:
+            - sales-network
+        ports:
+            - 5672:5672
+            - 25676:25676
+            - 15672:15672
+        environment:
+            - RABBITMQ_DEFAULT_USER=admin
+            - RABBITMQ_DEFAULT_PASS=123456
+
+    auth-api-nodejs:
+        image: venzel/auth:v1
+        container_name: auth-api-nodejs
+        networks:
+            - sales-network
+        environment:
+            - PORT=3001
+            - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
+            - DB_HOST=auth-db-postgres
+            - DB_NAME=auth
+            - DB_USER=admin
+            - DB_PASSWORD=123456
+            - DB_PORT=5432
+            - NODE_ENV=container
+        ports:
+            - 3001:3001
+
+networks:
+    sales-network:
+        driver: bridge
