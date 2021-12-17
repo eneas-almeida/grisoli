@@ -3,10 +3,10 @@ server:
 
 spring:
     application:
-        name: product
+        name: ${API_NAME:product}
 
     profiles:
-        active: ${ENVIRONMENT:development}
+        active: ${API_ENV:development}
 
     jackson:
         property-naming-strategy: SNAKE_CASE
@@ -16,17 +16,12 @@ spring:
         url: jdbc:postgresql://localhost:5433/product?createDatabaseIfNotExist=true&serverTimezone=UTC
         username: admin
         password: 123456
-        initialization-mode: always
-        initialize: true
-        continue-on-error: true
-        platform: postgresql
-        maxActive: 3
 
     jpa:
+        generate-ddl: true
+        show-sql: true
         hibernate:
             ddl-auto: create-drop
-            format_sql: true
-        show_sql: true
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQL9Dialect
