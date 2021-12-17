@@ -1,0 +1,32 @@
+server:
+    port: ${PORT:8081}
+
+spring:
+    application:
+        name: product
+
+    profiles:
+        active: ${ENVIRONMENT:development}
+
+    jackson:
+        property-naming-strategy: SNAKE_CASE
+
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5433/product?createDatabaseIfNotExist=true&serverTimezone=UTC
+        username: admin
+        password: 123456
+        initialization-mode: always
+        initialize: true
+        continue-on-error: true
+        platform: postgresql
+        maxActive: 3
+
+    jpa:
+        hibernate:
+            ddl-auto: create-drop
+            format_sql: true
+        show_sql: true
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQL9Dialect
