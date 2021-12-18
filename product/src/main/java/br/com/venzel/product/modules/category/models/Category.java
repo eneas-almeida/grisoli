@@ -1,4 +1,4 @@
-package br.com.venzel.product.modules.product.model;
+package br.com.venzel.product.modules.category.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "CATEGORY")
+@Entity(name = "category")
 public class Category {
 
     @Id
@@ -23,7 +23,7 @@ public class Category {
     @EqualsAndHashCode.Include
     private Long id;
     
-    @Column()
+    @Column(nullable = false)
     private String name;
 
     public Category(String name) {

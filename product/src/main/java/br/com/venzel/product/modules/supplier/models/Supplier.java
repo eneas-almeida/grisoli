@@ -1,4 +1,4 @@
-package br.com.venzel.product.modules.product.model;
+package br.com.venzel.product.modules.supplier.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "SUPPLIER")
+@Entity(name = "supplier")
 public class Supplier {
 
     @Id
@@ -23,11 +23,12 @@ public class Supplier {
     @EqualsAndHashCode.Include
     private Long id;
     
-    @Column()
+    @Column(nullable = false)
     private String name;
 
     public Supplier(String name) {
         super();
+        this.name = name;
     }
 
     public static Supplier create(String name) {

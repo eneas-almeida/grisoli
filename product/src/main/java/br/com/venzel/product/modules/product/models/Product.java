@@ -1,4 +1,4 @@
-package br.com.venzel.product.modules.product.model;
+package br.com.venzel.product.modules.product.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,11 +13,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import br.com.venzel.product.modules.category.models.Category;
+import br.com.venzel.product.modules.supplier.models.Supplier;
+
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "PRODUCT")
+@Entity(name = "product")
 public class Product {
 
     @Id
@@ -25,7 +28,7 @@ public class Product {
     @EqualsAndHashCode.Include
     private Long id;
     
-    @Column()
+    @Column(nullable = false)
     private String name;
 
     @ManyToOne
