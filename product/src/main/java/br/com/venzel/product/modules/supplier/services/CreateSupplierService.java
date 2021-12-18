@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.venzel.product.modules.supplier.dtos.CreateSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.CreateRequestSupplierDTO;
 import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
 import br.com.venzel.product.modules.supplier.exceptions.SupplierAlreadyExistsException;
 import br.com.venzel.product.modules.supplier.mappers.SupplierMapper;
@@ -22,10 +22,10 @@ public class CreateSupplierService {
     private SupplierMapper supplierMapper;
 
     @Transactional
-    public SupplierDTO execute(CreateSupplierDTO dto) {
+    public SupplierDTO execute(CreateRequestSupplierDTO req) {
         /* Verify supplier existence with name */        
 
-        Boolean existsCatgory = supplierRepository.existsByName(dto.getName());
+        Boolean existsCatgory = supplierRepository.existsByName(req.getName());
 
         /*  Guard strategy */
 
@@ -33,17 +33,17 @@ public class CreateSupplierService {
             throw new SupplierAlreadyExistsException(SupplierMessageUtil.SUPPLIER_ALREADY_EXISTS);
         }
 
-        /* Parse dto to entity */
+        /* Create object */
 
-        Supplier supplier = supplierMapper.toEntity(dto);
+        Supplier supplier = Supplier.create(req.getName());
 
         /* Save data in repository */
 
-        supplierRepository.save(supplier);
+        Supplier supplierSaved = supplierRepository.save(supplier);
 
-        /* Parse entity to dto and return */
+        /* Parse entity to dto */
 
-        SupplierDTO supplierDTO = supplierMapper.toDTO(supplier);
+        SupplierDTO supplierDTO = supplierMapper.toDTO(supplierSaved);
 
         /* Return supplier dto */
 

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateSupplierDTO {
+public class CreateRequestSupplierDTO {
     
     private String name;
 }

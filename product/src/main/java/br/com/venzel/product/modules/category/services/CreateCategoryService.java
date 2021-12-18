@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.venzel.product.modules.category.dtos.CategoryDTO;
-import br.com.venzel.product.modules.category.dtos.CreateCategoryDTO;
+import br.com.venzel.product.modules.category.dtos.CreateRequestCategoryDTO;
 import br.com.venzel.product.modules.category.exceptions.CategoryAlreadyExistsException;
 import br.com.venzel.product.modules.category.mappers.CategoryMapper;
 import br.com.venzel.product.modules.category.models.Category;
@@ -22,10 +22,11 @@ public class CreateCategoryService {
     private CategoryMapper categoryMapper;
 
     @Transactional
-    public CategoryDTO execute(CreateCategoryDTO dto) {
+    public CategoryDTO execute(CreateRequestCategoryDTO req) {
+        
         /* Verify category existence with name */        
 
-        Boolean existsCatgory = categoryRepository.existsByName(dto.getName());
+        Boolean existsCatgory = categoryRepository.existsByName(req.getName());
 
         /*  Guard strategy */
 
@@ -33,17 +34,17 @@ public class CreateCategoryService {
             throw new CategoryAlreadyExistsException(CategoryMessageUtil.CATEGORY_ALREADY_EXISTS);
         }
 
-        /* Parse dto to entity */
+        /* Create object */
 
-        Category category = categoryMapper.toEntity(dto);
+        Category category = Category.create(req.getName());
 
         /* Save data in repository */
 
-        categoryRepository.save(category);
+        Category categorySaved = categoryRepository.save(category);
 
-        /* Parse entity to dto and return */
+        /* Parse entity to dto */
 
-        CategoryDTO categoryDTO = categoryMapper.toDTO(category);
+        CategoryDTO categoryDTO = categoryMapper.toDTO(categorySaved);
 
         /* Return category dto */
 

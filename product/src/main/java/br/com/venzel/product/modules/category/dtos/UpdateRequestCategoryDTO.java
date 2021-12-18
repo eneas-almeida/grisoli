@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateCategoryDTO {
+public class UpdateRequestCategoryDTO {
     
     private String name;
 }

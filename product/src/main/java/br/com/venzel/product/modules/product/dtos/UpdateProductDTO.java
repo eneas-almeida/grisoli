@@ -1,10 +1,10 @@
 package br.com.venzel.product.modules.product.dtos;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import br.com.venzel.product.modules.category.dtos.CategoryDTO;
 import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import br.com.venzel.product.modules.product.dtos.ProductDTO;
-import br.com.venzel.product.modules.product.dtos.CreateProductDTO;
 import br.com.venzel.product.modules.product.dtos.ListProductDTO;
 import br.com.venzel.product.modules.product.dtos.UpdateProductDTO;
 import br.com.venzel.product.modules.product.models.Product;
@@ -36,10 +35,6 @@ public class ProductMapper {
 
     public Page<ListProductDTO> toCollectionPageModel(Page<Product> products) {
         return products.map(e -> toListDTO(e));
-    }
-
-    public Product toEntity(CreateProductDTO dto) {
-        return modelMapper.map(dto, Product.class);
     }
 
     public void toCopyEntity(UpdateProductDTO dto, Product product) {

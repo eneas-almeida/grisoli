@@ -11,17 +11,17 @@ spring:
     jackson:
         property-naming-strategy: SNAKE_CASE
 
+    jpa:
+        generate-ddl: true
+        show-sql: true
+        hibernate:
+            ddl-auto: create
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQL9Dialect
+
     datasource:
         driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://localhost:5433/product?createDatabaseIfNotExist=true&serverTimezone=UTC
         username: admin
         password: 123456
-
-    jpa:
-        generate-ddl: true
-        show-sql: true
-        hibernate:
-            ddl-auto: create-drop
-        properties:
-            hibernate:
-                dialect: org.hibernate.dialect.PostgreSQL9Dialect

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.venzel.product.modules.supplier.dtos.CreateSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.CreateRequestSupplierDTO;
 import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
 import br.com.venzel.product.modules.supplier.services.CreateSupplierService;
 
@@ -21,7 +21,7 @@ public class SupplierController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public SupplierDTO createSupplier(@RequestBody CreateSupplierDTO dto) {
-        return createSupplierService.execute(dto);
+    public SupplierDTO createSupplier(@RequestBody CreateRequestSupplierDTO req) {
+        return createSupplierService.execute(req);
     }
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.venzel.product.modules.category.dtos.CategoryDTO;
-import br.com.venzel.product.modules.category.dtos.CreateCategoryDTO;
+import br.com.venzel.product.modules.category.dtos.CreateRequestCategoryDTO;
 import br.com.venzel.product.modules.category.services.CreateCategoryService;
 
 @RestController
@@ -21,7 +21,7 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDTO createCategory(@RequestBody CreateCategoryDTO dto) {
-        return createCategoryService.execute(dto);
+    public CategoryDTO createCategory(@RequestBody CreateRequestCategoryDTO req) {
+        return createCategoryService.execute(req);
     }
 }
