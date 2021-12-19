@@ -1,6 +1,6 @@
 package br.com.venzel.product.modules.product.exceptions;
 
-import br.com.venzel.product.shared.exceptions.problems.EntityInUseException;
+import br.com.venzel.product.shared.exceptions.business.EntityInUseException;
 
 public class ProductInUseException extends EntityInUseException {
     

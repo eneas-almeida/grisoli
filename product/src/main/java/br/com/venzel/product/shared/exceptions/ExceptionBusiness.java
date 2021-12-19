@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @Getter
 @Builder
-public class Problem {
+public class ExceptionBusiness {
     private Integer status;
     private String type;
     private String title;

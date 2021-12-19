@@ -1,4 +1,4 @@
-package br.com.venzel.product.shared.exceptions.problems;
+package br.com.venzel.product.shared.exceptions.business;
 
 public class EntityAlreadyExistsException extends EntityException {
 

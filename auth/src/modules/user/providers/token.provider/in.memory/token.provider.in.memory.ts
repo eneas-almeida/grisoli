@@ -1,6 +1,6 @@
 import { randomBytes } from 'crypto';
 
-import { ITokenProvider } from '../models/token-provider';
+import { ITokenProvider } from '../models/token.provider';
 import { ICreatePayloadDTO } from '@modules/user/dtos/create.payload.dto';
 import { IPayloadDTO } from '@modules/user/dtos/payload.dto';
 

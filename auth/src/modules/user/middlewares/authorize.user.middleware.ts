@@ -1,7 +1,7 @@
 import { container } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
 
-import { ITokenProvider } from '../providers/token.provider/models/token-provider';
+import { ITokenProvider } from '../providers/token.provider/models/token.provider';
 import { AppException } from '@shared/exceptions/app.exception';
 
 class AuthorizeUserMiddleware {

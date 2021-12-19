@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.venzel.product.shared.exceptions.problems.EntityAlreadyExistsException;
-import br.com.venzel.product.shared.exceptions.problems.EntityInUseException;
-import br.com.venzel.product.shared.exceptions.problems.EntityNotFoundException;
+import br.com.venzel.product.shared.exceptions.business.AuthorizationException;
+import br.com.venzel.product.shared.exceptions.business.EntityAlreadyExistsException;
+import br.com.venzel.product.shared.exceptions.business.EntityInUseException;
+import br.com.venzel.product.shared.exceptions.business.EntityNotFoundException;
+import br.com.venzel.product.shared.exceptions.business.ValidationException;
 
 @RestControllerAdvice
-public class ApiExceptionHandle extends ResponseEntityExceptionHandler {
+public class ExceptionHandle extends ResponseEntityExceptionHandler {
     
-    private Problem createProblemBuilder(HttpStatus status, ProblemType problemType, String detail) {
+    private ExceptionBusiness createProblemBuilder(HttpStatus status, BusinessEnum problemType, String detail) {
         
-        return Problem.builder()
+        return ExceptionBusiness.builder()
             .status(status.value())
             .type(problemType.getUri())
             .title(problemType.getTitle())
@@ -29,12 +31,12 @@ public class ApiExceptionHandle extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
         if (body == null) {
-            body = Problem.builder()
+            body = ExceptionBusiness.builder()
                 .title(status.getReasonPhrase())
                 .status(status.value())
                 .build();
         } else if (body instanceof String) {
-            body = Problem.builder()
+            body = ExceptionBusiness.builder()
                 .title((String) body)
                 .status(status.value())
                 .build();
@@ -47,10 +49,10 @@ public class ApiExceptionHandle extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex, WebRequest request) {
 		
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		ProblemType problemType = ProblemType.ENTITY_NOT_FOUND;
+		BusinessEnum problemType = BusinessEnum.ENTITY_NOT_FOUND;
 		String detail = ex.getMessage();
 		
-		Problem problem = createProblemBuilder(status, problemType, detail);
+		ExceptionBusiness problem = createProblemBuilder(status, problemType, detail);
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
@@ -59,10 +61,10 @@ public class ApiExceptionHandle extends ResponseEntityExceptionHandler {
 	public ResponseEntity<?> handleEntityInUseFoundException(EntityInUseException ex, WebRequest request) {
 		
 		HttpStatus status = HttpStatus.CONFLICT;
-		ProblemType problemType = ProblemType.ENTITY_IN_USER;
+		BusinessEnum problemType = BusinessEnum.ENTITY_IN_USER;
 		String detail = ex.getMessage();
 		
-		Problem problem = createProblemBuilder(status, problemType, detail);
+		ExceptionBusiness problem = createProblemBuilder(status, problemType, detail);
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
@@ -70,11 +72,35 @@ public class ApiExceptionHandle extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityAlreadyExistsException.class)
 	public ResponseEntity<?> handleEntityAlreadyExistsException(EntityAlreadyExistsException ex, WebRequest request) {
 		
-		HttpStatus status = HttpStatus.CONFLICT;
-		ProblemType problemType = ProblemType.ENTITY_IN_USER;
+		HttpStatus status = HttpStatus.ALREADY_REPORTED;
+		BusinessEnum problemType = BusinessEnum.ENTITY_IN_USER;
 		String detail = ex.getMessage();
 		
-		Problem problem = createProblemBuilder(status, problemType, detail);
+		ExceptionBusiness problem = createProblemBuilder(status, problemType, detail);
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+
+    @ExceptionHandler(AuthorizationException.class)
+	public ResponseEntity<?> handleUserAuthorizationException(AuthorizationException ex, WebRequest request) {
+		
+		HttpStatus status = HttpStatus.UNAUTHORIZED;
+		BusinessEnum problemType = BusinessEnum.UNAUTHORIZED;
+		String detail = ex.getMessage();
+		
+		ExceptionBusiness problem = createProblemBuilder(status, problemType, detail);
+		
+		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+	}
+
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<?> handleValidationException(ValidationException ex, WebRequest request) {
+		
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		BusinessEnum problemType = BusinessEnum.VALIDATION;
+		String detail = ex.getMessage();
+		
+		ExceptionBusiness problem = createProblemBuilder(status, problemType, detail);
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}

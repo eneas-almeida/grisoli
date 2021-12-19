@@ -25,3 +25,7 @@ spring:
         url: jdbc:postgresql://localhost:5433/product?createDatabaseIfNotExist=true&serverTimezone=UTC
         username: admin
         password: 123456
+
+app-config:
+    secrets:
+        api-secret: ${TOKEN_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY=}

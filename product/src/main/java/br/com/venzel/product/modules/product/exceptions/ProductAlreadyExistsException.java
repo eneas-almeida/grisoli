@@ -1,6 +1,6 @@
 package br.com.venzel.product.modules.product.exceptions;
 
-import br.com.venzel.product.shared.exceptions.problems.EntityAlreadyExistsException;
+import br.com.venzel.product.shared.exceptions.business.EntityAlreadyExistsException;
 
 public class ProductAlreadyExistsException extends EntityAlreadyExistsException {
     

@@ -1,0 +1,9 @@
+{
+    "properties": [
+        {
+            "name": "app-config.secrets.api-secret",
+            "type": "java.lang.String",
+            "description": "App config secrets"
+        }
+    ]
+}

@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 
-import { ITokenProvider } from './models/token-provider';
+import { ITokenProvider } from './models/token.provider';
 import { JWTTokenProvider } from './services/jwt.token.provider';
 
 class TokenProviderStrategy {
