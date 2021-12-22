@@ -2,22 +2,22 @@ package br.com.venzel.product.modules.product.dtos;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import br.com.venzel.product.modules.category.dtos.CategoryDTO;
-import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
+import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
+import br.com.venzel.product.modules.supplier.dtos.ResponseSupplierDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductDTO {
+public class ResponseProductDTO {
     
     private Long id;
 
     private String name;
 
     @JsonManagedReference
-    private CategoryDTO category;
+    private ResponseCategoryDTO category;
 
     @JsonManagedReference
-    private SupplierDTO supplier;
+    private ResponseSupplierDTO supplier;
 }

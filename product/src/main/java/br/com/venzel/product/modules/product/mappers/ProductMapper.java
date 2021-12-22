@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import br.com.venzel.product.modules.product.dtos.ProductDTO;
+import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
 import br.com.venzel.product.modules.product.dtos.ListProductDTO;
 import br.com.venzel.product.modules.product.dtos.UpdateProductDTO;
 import br.com.venzel.product.modules.product.models.Product;
@@ -19,8 +19,8 @@ public class ProductMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public ProductDTO toDTO(Product product) {
-        return modelMapper.map(product, ProductDTO.class);
+    public ResponseProductDTO toDTO(Product product) {
+        return modelMapper.map(product, ResponseProductDTO.class);
     }
 
     public ListProductDTO toListDTO(Product product) {

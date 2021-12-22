@@ -1,11 +1,11 @@
-package br.com.venzel.product.modules.category.dtos;
+package br.com.venzel.product.modules.supplier.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateRequestCategoryDTO {
+public class RequestSupplierDTO {
     
     private String name;
 }

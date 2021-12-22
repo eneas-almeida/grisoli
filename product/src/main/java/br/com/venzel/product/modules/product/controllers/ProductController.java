@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.venzel.product.modules.product.dtos.ProductDTO;
-import br.com.venzel.product.modules.product.dtos.CreateRequestProductDTO;
+import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
+import br.com.venzel.product.modules.product.dtos.RequestProductDTO;
 import br.com.venzel.product.modules.product.services.CreateProductService;
 
 @RestController
@@ -21,7 +21,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDTO createProduct(@RequestBody CreateRequestProductDTO req) {
+    public ResponseProductDTO createProduct(@RequestBody RequestProductDTO req) {
         return createProductService.execute(req);
     }
 }

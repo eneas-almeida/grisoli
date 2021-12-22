@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.venzel.product.modules.category.dtos.CategoryDTO;
-import br.com.venzel.product.modules.category.dtos.CreateRequestCategoryDTO;
+import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
+import br.com.venzel.product.modules.category.dtos.RequestCategoryDTO;
 import br.com.venzel.product.modules.category.exceptions.CategoryAlreadyExistsException;
 import br.com.venzel.product.modules.category.mappers.CategoryMapper;
 import br.com.venzel.product.modules.category.models.Category;
@@ -22,7 +22,7 @@ public class CreateCategoryService {
     private CategoryMapper categoryMapper;
 
     @Transactional
-    public CategoryDTO execute(CreateRequestCategoryDTO req) {
+    public ResponseCategoryDTO execute(RequestCategoryDTO req) {
         
         /* Verify category existence with name */        
 
@@ -44,7 +44,7 @@ public class CreateCategoryService {
 
         /* Parse entity to dto */
 
-        CategoryDTO categoryDTO = categoryMapper.toDTO(categorySaved);
+        ResponseCategoryDTO categoryDTO = categoryMapper.toDTO(categorySaved);
 
         /* Return category dto */
 

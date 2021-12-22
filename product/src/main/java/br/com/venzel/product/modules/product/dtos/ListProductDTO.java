@@ -1,7 +1,7 @@
 package br.com.venzel.product.modules.product.dtos;
 
-import br.com.venzel.product.modules.category.dtos.CategoryDTO;
-import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
+import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
+import br.com.venzel.product.modules.supplier.dtos.ResponseSupplierDTO;
 
 import lombok.Getter;
 
@@ -12,7 +12,7 @@ public class ListProductDTO {
 
     private String name;
 
-    private CategoryDTO category;
+    private ResponseCategoryDTO category;
 
-    private SupplierDTO supplier;
+    private ResponseSupplierDTO supplier;
 }

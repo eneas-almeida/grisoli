@@ -9,8 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import br.com.venzel.product.modules.supplier.dtos.ListSupplierDTO;
-import br.com.venzel.product.modules.supplier.dtos.SupplierDTO;
-import br.com.venzel.product.modules.supplier.dtos.UpdateRequestSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.ResponseSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.UpdateSupplierDTO;
 import br.com.venzel.product.modules.supplier.models.Supplier;
 
 @Component
@@ -19,8 +19,8 @@ public class SupplierMapper {
     @Autowired
     private ModelMapper modelMapper;
 
-    public SupplierDTO toDTO(Supplier supplier) {
-        return modelMapper.map(supplier, SupplierDTO.class);
+    public ResponseSupplierDTO toDTO(Supplier supplier) {
+        return modelMapper.map(supplier, ResponseSupplierDTO.class);
     }
 
     public ListSupplierDTO toListDTO(Supplier supplier) {
@@ -37,7 +37,7 @@ public class SupplierMapper {
         return suppliers.map(e -> toListDTO(e));
     }
 
-    public void toCopyEntity(UpdateRequestSupplierDTO dto, Supplier supplier) {
+    public void toCopyEntity(UpdateSupplierDTO dto, Supplier supplier) {
         modelMapper.map(dto, supplier);
     }
 }

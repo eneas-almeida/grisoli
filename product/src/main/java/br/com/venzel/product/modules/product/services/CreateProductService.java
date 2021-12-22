@@ -10,8 +10,8 @@ import br.com.venzel.product.modules.category.exceptions.CategoryNotFoundExcepti
 import br.com.venzel.product.modules.category.models.Category;
 import br.com.venzel.product.modules.category.repositories.CategoryRepository;
 import br.com.venzel.product.modules.category.utils.CategoryMessageUtil;
-import br.com.venzel.product.modules.product.dtos.ProductDTO;
-import br.com.venzel.product.modules.product.dtos.CreateRequestProductDTO;
+import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
+import br.com.venzel.product.modules.product.dtos.RequestProductDTO;
 import br.com.venzel.product.modules.product.exceptions.ProductAlreadyExistsException;
 import br.com.venzel.product.modules.product.mappers.ProductMapper;
 import br.com.venzel.product.modules.product.models.Product;
@@ -38,7 +38,7 @@ public class CreateProductService {
     private ProductMapper productMapper;
 
     @Transactional
-    public ProductDTO execute(CreateRequestProductDTO req) {
+    public ResponseProductDTO execute(RequestProductDTO req) {
 
         /* Vars in request product dto */
 
@@ -84,7 +84,7 @@ public class CreateProductService {
 
         /* Parse entity to dto and return */
         
-        ProductDTO productDTO = productMapper.toDTO(productSaved);
+        ResponseProductDTO productDTO = productMapper.toDTO(productSaved);
         
         /* Return product dto */
 
