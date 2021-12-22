@@ -1,4 +1,4 @@
-package br.com.venzel.product.shared.exceptions.business;
+package br.com.venzel.product.shared.exceptions.problems;
 
 public class AuthorizationException extends EntityException {
 

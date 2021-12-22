@@ -4,6 +4,36 @@
             "name": "app-config.secrets.api-secret",
             "type": "java.lang.String",
             "description": "App config secrets"
+        },
+        {
+            "name": "app-config.rabbit.queue.sales-confirmation",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.rabbit.queue.sales-confirmation'"
+        },
+        {
+            "name": "app-config.rabbit.exchange.product",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.rabbit.exchange.product'"
+        },
+        {
+            "name": "app-config.rabbit.routingKey.sales-confirmation",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.rabbit.routingKey.sales-confirmation'"
+        },
+        {
+            "name": "app-config.rabbit.routingKey.product-stock",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.rabbit.routingKey.product-stock'"
+        },
+        {
+            "name": "app-config.rabbit.queue.product-stock",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.rabbit.queue.product-stock'"
+        },
+        {
+            "name": "app-config.services.sales",
+            "type": "java.lang.String",
+            "description": "A description for 'app-config.services.sales'"
         }
     ]
 }

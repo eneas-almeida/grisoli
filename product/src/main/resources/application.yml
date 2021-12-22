@@ -2,6 +2,9 @@ server:
     port: ${PORT:8081}
 
 spring:
+    main:
+        allow-bean-definition-overriding: true
+
     application:
         name: ${API_NAME:product}
 
@@ -26,6 +29,27 @@ spring:
         username: admin
         password: 123456
 
+    rabbitmq:
+        host: ${RABBIT_MQ_HOST:localhost}
+        port: ${RABBIT_MQ_PORT:5672}
+        username: ${RABBIT_MQ_USERNAME:admin}
+        password: ${RABBIT_MQ_PASSWORD]:123456}
+
 app-config:
+    services:
+        sales: http://${SALES_HOST:localhost}:${SALES_PORT:8082}
+
     secrets:
         api-secret: ${TOKEN_SECRET:YXV0aC1hcGktc2VjcmV0LWRldi0xMjM0NTY=}
+
+    rabbit:
+        exchange:
+            product: product.topic
+
+        routingKey:
+            product-stock: product-stock-update.routingKey
+            sales-confirmation: sales-confirmation.routingKey
+
+        queue:
+            product-stock: product-stock-update.queue
+            sales-confirmation: sales-confirmation.queue

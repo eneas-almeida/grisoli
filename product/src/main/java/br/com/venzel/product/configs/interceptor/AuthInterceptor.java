@@ -12,7 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import br.com.venzel.product.modules.token.services.TokenService;
-import br.com.venzel.product.shared.exceptions.business.ValidationException;
+import br.com.venzel.product.shared.exceptions.problems.ValidationException;
 
 public class AuthInterceptor implements HandlerInterceptor {
 

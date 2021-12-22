@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ListCategoryDTO {
+public class ResponsePageCategoryDTO {
     
     private Long id;
 

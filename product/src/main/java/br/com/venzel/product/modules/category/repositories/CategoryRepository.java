@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import br.com.venzel.product.modules.category.models.Category;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Long> {
-    Optional<Category> findOneById(Long id);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+    Optional<Category> findOneById(Integer id);
 
     Optional<Category> findOneByName(String name);
 

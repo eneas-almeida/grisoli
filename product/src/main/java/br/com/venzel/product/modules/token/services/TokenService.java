@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import br.com.venzel.product.modules.token.dtos.TokenDTO;
-import br.com.venzel.product.shared.exceptions.business.AuthorizationException;
+import br.com.venzel.product.shared.exceptions.problems.AuthorizationException;
 
 @Service
 public class TokenService {

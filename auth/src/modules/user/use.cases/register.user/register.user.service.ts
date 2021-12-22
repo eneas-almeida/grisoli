@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import { IUserRepository } from '@modules/user/repositories/user.repository';
-import { ITokenProvider } from '@modules/user/providers/token.provider/models/token-provider';
+import { ITokenProvider } from '@modules/user/providers/token.provider/models/token.provider';
 import { IHashProvider } from '@modules/user/providers/hash.provider/models/hash.provider';
 import { IRegisterUserDTO } from '@modules/user/dtos/register.user.dto';
 import { IUser } from '@modules/user/models/user';

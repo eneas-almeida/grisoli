@@ -54,22 +54,22 @@ services:
             - RABBITMQ_DEFAULT_USER=admin
             - RABBITMQ_DEFAULT_PASS=123456
 
-    auth-api-nodejs:
-        image: venzel/auth:v1
-        container_name: auth-api-nodejs
-        networks:
-            - sales-network
-        environment:
-            - PORT=3001
-            - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
-            - DB_HOST=auth-db-postgres
-            - DB_NAME=auth
-            - DB_USER=admin
-            - DB_PASSWORD=123456
-            - DB_PORT=5432
-            - NODE_ENV=container
-        ports:
-            - 3001:3001
+    # auth-api-nodejs:
+    #     image: venzel/auth:v1
+    #     container_name: auth-api-nodejs
+    #     networks:
+    #         - sales-network
+    #     environment:
+    #         - PORT=3001
+    #         - API_SECRET=YXV0aC1hcGktc2VjcmV0LWNvbnRhaW5lci0xMjM0NTY=
+    #         - DB_HOST=auth-db-postgres
+    #         - DB_NAME=auth
+    #         - DB_USER=admin
+    #         - DB_PASSWORD=123456
+    #         - DB_PORT=5432
+    #         - NODE_ENV=container
+    #     ports:
+    #         - 3001:3001
 
 networks:
     sales-network:

@@ -1,5 +1,8 @@
 package br.com.venzel.product.modules.product.dtos;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
@@ -20,4 +23,9 @@ public class ResponseProductDTO {
 
     @JsonManagedReference
     private ResponseSupplierDTO supplier;
+
+    private Integer quantityAvailable;
+
+    @JsonFormat(pattern = "dd/MM/YY HH:mm:ss")
+    private LocalDateTime createdAt;
 }

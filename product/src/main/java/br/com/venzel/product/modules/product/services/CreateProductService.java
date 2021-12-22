@@ -10,8 +10,9 @@ import br.com.venzel.product.modules.category.exceptions.CategoryNotFoundExcepti
 import br.com.venzel.product.modules.category.models.Category;
 import br.com.venzel.product.modules.category.repositories.CategoryRepository;
 import br.com.venzel.product.modules.category.utils.CategoryMessageUtil;
-import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
+import br.com.venzel.product.modules.product.dtos.ProductStockDTO;
 import br.com.venzel.product.modules.product.dtos.RequestProductDTO;
+import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
 import br.com.venzel.product.modules.product.exceptions.ProductAlreadyExistsException;
 import br.com.venzel.product.modules.product.mappers.ProductMapper;
 import br.com.venzel.product.modules.product.models.Product;
@@ -40,13 +41,9 @@ public class CreateProductService {
     @Transactional
     public ResponseProductDTO execute(RequestProductDTO req) {
 
-        /* Vars in request product dto */
-
-        String name = req.getName();
-
         /* Verify product existence with name */
 
-        Boolean existsProduct = productRepository.existsByName(name);
+        Boolean existsProduct = productRepository.existsByName(req.getName());
 
         /*  Guard strategy */
 
@@ -76,7 +73,7 @@ public class CreateProductService {
 
         /* Create object */
 
-        Product product = Product.create(name, existsCategory.get(), existsSupplier.get());
+        Product product = Product.create(req.getName(), req.getQuantityAvailable(), existsCategory.get(), existsSupplier.get());
 
         /* Save data in repository */
 
@@ -90,4 +87,6 @@ public class CreateProductService {
 
         return productDTO;
     }
+
+    public void updateProductStock(ProductStockDTO productStockDTO) {}
 }

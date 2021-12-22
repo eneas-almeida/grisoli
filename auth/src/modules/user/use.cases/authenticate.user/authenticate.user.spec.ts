@@ -1,5 +1,5 @@
 import { UserRepositoryInMemory } from '@modules/user/repositories/in.memory/user.repository.in.memory';
-import { ITokenProvider } from '@modules/user/providers/token.provider/models/token-provider';
+import { ITokenProvider } from '@modules/user/providers/token.provider/models/token.provider';
 import { IHashProvider } from '@modules/user/providers/hash.provider/models/hash.provider';
 import { AuthenticateUserService } from './authenticate.user.service';
 import { TokenProviderInMemory } from '@modules/user/providers/token.provider/in.memory/token.provider.in.memory';

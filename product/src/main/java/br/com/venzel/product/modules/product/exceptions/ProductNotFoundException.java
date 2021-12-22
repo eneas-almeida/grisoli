@@ -1,6 +1,6 @@
 package br.com.venzel.product.modules.product.exceptions;
 
-import br.com.venzel.product.shared.exceptions.business.EntityNotFoundException;
+import br.com.venzel.product.shared.exceptions.problems.EntityNotFoundException;
 
 public class ProductNotFoundException extends EntityNotFoundException {
     

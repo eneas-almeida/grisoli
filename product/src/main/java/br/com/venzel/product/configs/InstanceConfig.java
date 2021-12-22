@@ -42,9 +42,9 @@ public class InstanceConfig implements CommandLineRunner {
 
         // PRODUCT
 
-        Product product_sal = Product.create("Sal", category_condimentos, supplier_extra);
-        Product product_monbiju = Product.create("Mombiju", category_limpeza, supplier_extra);
-        Product product_pinhosol = Product.create("Pinho sol", category_limpeza, supplier_apex);
+        Product product_sal = Product.create("Sal", 5, category_condimentos, supplier_extra);
+        Product product_monbiju = Product.create("Mombiju", 4, category_limpeza, supplier_extra);
+        Product product_pinhosol = Product.create("Pinho sol", 2, category_limpeza, supplier_apex);
 
 
         // REPOSITORIES

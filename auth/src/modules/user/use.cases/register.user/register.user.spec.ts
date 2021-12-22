@@ -1,6 +1,6 @@
 import { UserRepositoryInMemory } from '@modules/user/repositories/in.memory/user.repository.in.memory';
 import { RegisterUserService } from './register.user.service';
-import { ITokenProvider } from '@modules/user/providers/token.provider/models/token-provider';
+import { ITokenProvider } from '@modules/user/providers/token.provider/models/token.provider';
 import { IHashProvider } from '@modules/user/providers/hash.provider/models/hash.provider';
 import { HashProviderInMemory } from '@modules/user/providers/hash.provider/in.memory/hash.provider.in.memory';
 import { TokenProviderInMemory } from '@modules/user/providers/token.provider/in.memory/token.provider.in.memory';
