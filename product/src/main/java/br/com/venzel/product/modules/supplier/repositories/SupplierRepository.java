@@ -9,9 +9,10 @@ import br.com.venzel.product.modules.supplier.models.Supplier;
 
 @Repository
 public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
-    Optional<Supplier> findOneById(Integer id);
 
-    Optional<Supplier> findOneByName(String name);
+    Optional<Supplier> findOneById(Integer supplierId);
 
-    Boolean existsByName(String name);
+    Optional<Supplier> findOneByName(String supplierName);
+
+    Boolean existsByName(String supplierName);
 }

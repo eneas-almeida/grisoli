@@ -5,7 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdateSupplierDTO {
+public class ResponseListSupplierDTO {
     
+    private Integer id;
+
     private String name;
 }

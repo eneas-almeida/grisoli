@@ -1,14 +1,16 @@
 package br.com.venzel.product.modules.category.dtos;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public class RequestCategoryDTO {
- 
+public class RequestUpdateCategoryDTO {
+    
+    @NotNull
+    private Integer id;
+
     @NotBlank
     private String name;
 }

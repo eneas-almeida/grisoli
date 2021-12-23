@@ -17,8 +17,8 @@ spring:
     jpa:
         generate-ddl: true
         show-sql: true
-        hibernate:
-            ddl-auto: create
+        # hibernate:
+        # ddl-auto: create
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.PostgreSQL9Dialect

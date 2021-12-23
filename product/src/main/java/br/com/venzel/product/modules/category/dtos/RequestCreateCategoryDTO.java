@@ -1,13 +1,12 @@
 package br.com.venzel.product.modules.category.dtos;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public class ResponsePageCategoryDTO {
-    
-    private Long id;
-
+public class RequestCreateCategoryDTO {
+ 
+    @NotBlank
     private String name;
 }

@@ -1,12 +1,12 @@
 package br.com.venzel.product.modules.category.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-import br.com.venzel.product.modules.category.dtos.ResponseListCategoryDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
 import br.com.venzel.product.modules.category.exceptions.CategoryNotFoundException;
 import br.com.venzel.product.modules.category.mappers.CategoryMapper;
 import br.com.venzel.product.modules.category.models.Category;
@@ -14,27 +14,37 @@ import br.com.venzel.product.modules.category.repositories.CategoryRepository;
 import br.com.venzel.product.modules.category.utils.CategoryMessageUtil;
 
 @Service
-public class ListCategoryService {
-
+public class DeleteCategoryService {
+    
     @Autowired
     private CategoryRepository categoryRepository;
-
+    
     @Autowired
     private CategoryMapper categoryMapper;
-    
-    public Page<ResponseListCategoryDTO> execute(Integer page, Integer linesPerPage, String orderBy, String direction) {
 
-        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
+    @Transactional
+    public ResponseCategoryDTO execute(Integer cateogoryId) {
 
-        Page<Category> categories = categoryRepository.findAll(pageRequest);
+        /* Find category by name */
 
-        if (categories.isEmpty()) {
+        Optional<Category> optionalEntity = categoryRepository.findOneById(cateogoryId);
+
+        /* Guard strategy */
+
+        if (optionalEntity.isEmpty()) {
             throw new CategoryNotFoundException(CategoryMessageUtil.CATEGORY_NOT_FOUND);
         }
 
-        Page<ResponseListCategoryDTO> pageCategoryDTO = categoryMapper.toCollectionPageModel(categories);
+        /* Get object */
 
-        return pageCategoryDTO;
+        Category category = optionalEntity.get();
+
+        /* Delete category */
+
+        categoryRepository.deleteById(cateogoryId);
+
+        /* Convert objeto to dto and return */
+
+        return categoryMapper.toDTO(category);
     }
-
 }

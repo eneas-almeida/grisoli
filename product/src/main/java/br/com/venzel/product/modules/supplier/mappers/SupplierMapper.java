@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
-import br.com.venzel.product.modules.supplier.dtos.ListSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.ResponseListSupplierDTO;
 import br.com.venzel.product.modules.supplier.dtos.ResponseSupplierDTO;
-import br.com.venzel.product.modules.supplier.dtos.UpdateSupplierDTO;
+import br.com.venzel.product.modules.supplier.dtos.RequestUpdateSupplierDTO;
 import br.com.venzel.product.modules.supplier.models.Supplier;
 
 @Component
@@ -23,21 +23,21 @@ public class SupplierMapper {
         return modelMapper.map(supplier, ResponseSupplierDTO.class);
     }
 
-    public ListSupplierDTO toListDTO(Supplier supplier) {
-        return modelMapper.map(supplier, ListSupplierDTO.class);
+    public ResponseListSupplierDTO toListDTO(Supplier supplier) {
+        return modelMapper.map(supplier, ResponseListSupplierDTO.class);
     }
 
-    public List<ListSupplierDTO> toCollectionModel(List<Supplier> suppliers) {
+    public List<ResponseListSupplierDTO> toCollectionModel(List<Supplier> suppliers) {
         return suppliers.stream()
                     .map(e -> toListDTO(e))
                     .collect(Collectors.toList());
     }
 
-    public Page<ListSupplierDTO> toCollectionPageModel(Page<Supplier> suppliers) {
+    public Page<ResponseListSupplierDTO> toCollectionPageModel(Page<Supplier> suppliers) {
         return suppliers.map(e -> toListDTO(e));
     }
 
-    public void toCopyEntity(UpdateSupplierDTO dto, Supplier supplier) {
+    public void toCopyEntity(RequestUpdateSupplierDTO dto, Supplier supplier) {
         modelMapper.map(dto, supplier);
     }
 }

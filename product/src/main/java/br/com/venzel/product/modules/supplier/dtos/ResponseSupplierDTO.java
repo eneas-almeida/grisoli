@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ResponseSupplierDTO {
     
-    private Long id;
+    private Integer id;
 
     private String name;
 }

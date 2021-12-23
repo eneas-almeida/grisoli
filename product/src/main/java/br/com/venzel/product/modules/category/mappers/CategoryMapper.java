@@ -1,16 +1,16 @@
 package br.com.venzel.product.modules.category.mappers;
 
-// import java.util.List;
-// import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
+import br.com.venzel.product.modules.category.dtos.RequestUpdateCategoryDTO;
 import br.com.venzel.product.modules.category.dtos.ResponseCategoryDTO;
-import br.com.venzel.product.modules.category.dtos.ResponsePageCategoryDTO;
-import br.com.venzel.product.modules.category.dtos.UpdateCategoryDTO;
+import br.com.venzel.product.modules.category.dtos.ResponseListCategoryDTO;
 import br.com.venzel.product.modules.category.models.Category;
 
 @Component
@@ -23,15 +23,21 @@ public class CategoryMapper {
         return modelMapper.map(category, ResponseCategoryDTO.class);
     }
 
-    public ResponsePageCategoryDTO toPageDTO(Category category) {
-        return modelMapper.map(category, ResponsePageCategoryDTO.class);
+    public ResponseListCategoryDTO toListDTO(Category category) {
+        return modelMapper.map(category, ResponseListCategoryDTO.class);
     }
 
-    public Page<ResponsePageCategoryDTO> toCollectionPageModel(Page<Category> categories) {
-        return categories.map(e -> toPageDTO(e));
+    public List<ResponseListCategoryDTO> toCollectionModel(List<Category> categories) {
+        return categories.stream()
+                    .map(e -> toListDTO(e))
+                    .collect(Collectors.toList());
     }
 
-    public void toCopyEntity(UpdateCategoryDTO dto, Category category) {
+    public Page<ResponseListCategoryDTO> toCollectionPageModel(Page<Category> categories) {
+        return categories.map(e -> toListDTO(e));
+    }
+
+    public void toCopyEntity(RequestUpdateCategoryDTO dto, Category category) {
         modelMapper.map(dto, category);
     }
 }

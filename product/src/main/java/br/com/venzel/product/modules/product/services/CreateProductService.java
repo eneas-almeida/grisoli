@@ -11,7 +11,7 @@ import br.com.venzel.product.modules.category.models.Category;
 import br.com.venzel.product.modules.category.repositories.CategoryRepository;
 import br.com.venzel.product.modules.category.utils.CategoryMessageUtil;
 import br.com.venzel.product.modules.product.dtos.ProductStockDTO;
-import br.com.venzel.product.modules.product.dtos.RequestProductDTO;
+import br.com.venzel.product.modules.product.dtos.RequestCreateProductDTO;
 import br.com.venzel.product.modules.product.dtos.ResponseProductDTO;
 import br.com.venzel.product.modules.product.exceptions.ProductAlreadyExistsException;
 import br.com.venzel.product.modules.product.mappers.ProductMapper;
@@ -39,15 +39,15 @@ public class CreateProductService {
     private ProductMapper productMapper;
 
     @Transactional
-    public ResponseProductDTO execute(RequestProductDTO req) {
+    public ResponseProductDTO execute(RequestCreateProductDTO req) {
 
         /* Verify product existence with name */
 
-        Boolean existsProduct = productRepository.existsByName(req.getName());
+        Boolean optionalEntity = productRepository.existsByName(req.getName());
 
         /*  Guard strategy */
 
-        if (existsProduct) {
+        if (optionalEntity) {
             throw new ProductAlreadyExistsException(ProductMessageUtil.PRODUCT_ALREADY_EXISTS);
         }
 

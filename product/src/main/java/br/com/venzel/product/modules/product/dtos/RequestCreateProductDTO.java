@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 
 @Getter
-public class RequestProductDTO {
+public class RequestCreateProductDTO {
     
     @NotBlank
     private String name;
